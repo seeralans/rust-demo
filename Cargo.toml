@@ -1,0 +1,35 @@
+[package]
+name = "rust-demo"
+version = "0.1.0"
+authors = ["Seeralan Sarvaharman <ss14546@my.bristol.ac.uk>"]
+edition = "2018"
+
+[lib]
+name = "rust_demo"
+path = "src/lib.rs"
+crate-type = ["lib", "cdylib"]
+
+[dependencies]
+rand = "0.7.0"
+numpy = "0.7.0"
+ndarray = "0.12"
+bencher = "0.1.5"
+itertools = "0.8.0"
+num_cpus = "1.10.1"
+num = "0.2.0"
+
+[profile.dev]
+opt-level = 3
+
+# [profile.release]
+# debug = true
+
+[profile.release]
+opt-level = 3
+
+
+[dependencies.pyo3]
+version = "0.8.3"
+features = ["extension-module"]
+
+#rustc 1.38.0-nightly (311376d30 2019-07-18)
