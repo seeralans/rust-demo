@@ -1,9 +1,7 @@
 use pyo3::prelude::*;
-use pyo3::{wrap_pymodule, wrap_pyfunction};
+use pyo3::{wrap_pyfunction};
 
 
-use ndarray;
-use ndarray::{Array};
 use numpy::{IntoPyArray, PyArray1};
 
 
@@ -13,7 +11,7 @@ pub mod simulator {
   pub fn coverage_sim(n0: i64, p: f64, N: usize, num_trials: usize) -> Vec<u64>{
     let mut trial_times = vec![0; num_trials];
     let mut rng = StdRng::from_entropy();
-    for trial in 0..num_trials {
+    for trial in trials_times.iter_mut() {
       let mut visits = vec![0; N];
       let mut current_pos = n0;
       visits[current_pos as usize - 1] += 1;
@@ -52,7 +50,7 @@ pub mod simulator {
         time += 1;
 
       }
-      trial_times[trial] = time;
+      trial = time;
     }
     trial_times
   }
