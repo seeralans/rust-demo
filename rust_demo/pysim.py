@@ -6,7 +6,7 @@ pp.style.use(["default", "paper"])
 def coverage_sim(n0, p, N, num_trials):
 
   trial_times = np.zeros(num_trials)
-  for trial in range(num_trials):
+  for trial in trial_times:
     visits = np.zeros(N, dtype=int)
     current_pos = n0
     visits[current_pos-1] += 1
@@ -33,5 +33,5 @@ def coverage_sim(n0, p, N, num_trials):
       visits[current_pos-1] += 1
       # increment time
       time += 1
-    trial_times[trial] = time
+    trial = time
   return trial_times
