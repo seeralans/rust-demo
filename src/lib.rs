@@ -8,6 +8,7 @@ use numpy::{IntoPyArray, PyArray1};
 pub mod simulator {
   use rand::rngs::StdRng;
   use rand::prelude::*;
+
   pub fn coverage_sim(n0: i64, p: f64, N: usize, num_trials: usize) -> Vec<u64>{
     let mut trial_times = vec![0; num_trials];
     let mut rng = StdRng::from_entropy();
