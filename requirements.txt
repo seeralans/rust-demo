@@ -1,0 +1,5 @@
+numpy
+maturin
+matplotlib
+ipython
+PyQt5
