@@ -9,13 +9,6 @@
 - Probability of jumping right $p/2$
 - Probability of staying at the same site $1 - p$
 
-
-
-* Python Version
-  [[./rust_demo/pyfuncs.py][Python Version]]
-
-
-
 #+begin_src jupyter-python :session rust-demo :results drawer :exports none
 import numpy as np
 import matplotlib.pyplot as pp
@@ -55,5 +48,14 @@ def coverage_sim(n0, p, N, num_trials):
     trial_times[trial] = time
   return trial_times
 #+end_src
+
+
+* Python Version
+  [[./rust_demo/pyfuncs.py][Python Version]]
+
+* Rust Version
+  [[./src/lib.rs][Rust Version]]
+
+
 
 #+RESULTS:
