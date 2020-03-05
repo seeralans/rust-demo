@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as pp
 pp.style.use(["default", "paper"])
 
-
 def coverage_sim(n0, p, N, num_trials):
 
   trial_times = np.zeros(num_trials)
@@ -33,5 +32,5 @@ def coverage_sim(n0, p, N, num_trials):
       visits[current_pos-1] += 1
       # increment time
       time += 1
-    num_trials[trial] = time
+    trial_times[trial] = time
   return trial_times
