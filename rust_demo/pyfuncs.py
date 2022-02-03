@@ -2,11 +2,11 @@ import numpy as np
 import matplotlib.pyplot as pp
 pp.style.use(["default", "paper"])
 
-def coverage_sim(n0, p, N, num_trials):
+def coverage_sim(n0, p, nn, num_trials):
 
   trial_times = np.zeros(num_trials)
   for trial in range(num_trials):
-    visits = np.zeros(N, dtype=int)
+    visits = np.zeros(nn, dtype=int)
     current_pos = n0
     visits[current_pos-1] += 1
     time = 0
@@ -26,7 +26,7 @@ def coverage_sim(n0, p, N, num_trials):
       # boundary checks
       if current_pos < 1:
         current_pos += 1
-      elif current_pos > N:
+      elif current_pos > nn:
         current_pos -= 1
       # increment visit
       visits[current_pos-1] += 1
