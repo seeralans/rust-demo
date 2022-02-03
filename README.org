@@ -56,6 +56,85 @@ def coverage_sim(n0, p, N, num_trials):
 * Rust Version
   [[./src/lib.rs][Rust Version]]
 
+* Resources  
+- PyO3:[[https://pyo3.rs/v0.15.1/][ Guide]],[[https://docs.rs/pyo3/latest/pyo3/][Docs]]
+- Rust: [[https://doc.rust-lang.org/book/][The Book]], [[https://doc.rust-lang.org/rust-by-example/][Rust By Example]]
+
+* General Install Instruction
+** Setting up
+The rust nightly compiler is needed for this library, to install rust use
+#+begin_src shell
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#+end_src
+then set the default toolchain to be nightly, for system wide 
+#+begin_src shell
+rustup set default nightly
+#+end_src
+or for =rust-demo= use
+#+begin_src shell
+git clone https://github.com/seeralans/rust-demo.git
+cd rusty-demo
+rustup overide set nightly
+#+end_src
+
+** Compiling 
+It's useful to first setup a virtual environment, 
+#+begin_src shell
+# inside rust-demo
+python -m virtualenv env
+source env/bin/activate
+#+end_src
+
+Install some useful dependencies
+#+begin_src shell
+pip install -r requirements.txt
+#+end_src
+build and install the rust bindings
+#+begin_src shell
+maturin build
+pip install target/wheels/rust_demo-0.1.0-cp310-cp310-linux_x86_64.whl
+#+end_src
+
+** Benching
+#+begin_src python 
+import rust_demo.pyfuncs as py 
+import rust_demo.rust_demo as rd 
+import timeit
+
+# initial condition
+n0 = 5
+
+# size of the domain
+nn = 15
+
+# probability of moving
+p = 2/3
+
+# numer of trials
+num_trials = 10**2
+
+# number of bench runst 
+bench_runs = 10
+
+py_helper = lambda: py.coverage_sim(n0, p, nn, num_trials)
+rust_helper = lambda: rd.coverage_sim(n0, p, nn, num_trials)
+
+py_time = timeit.Timer(py_helper).timeit(bench_runs)
+rust_time = timeit.Timer(rust_helper).timeit(bench_runs)
+
+print(f"Python version took  {py_time / bench_runs} seconds (average) after {bench_runs} runs")
+print(f"Rust version took  {rust_time / bench_runs} seconds (average) after {bench_runs} runs")
+#+end_src
+
+
+
+
+
+
 
 
 #+RESULTS:
+#+begin_example
+Python version took  0.11504677980010455 seconds (average) after 10 runs
+Rust version took  0.0005832160997670144 seconds (average) after 10 runs
+#+end_example
